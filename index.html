@@ -11,8 +11,16 @@
       <section class="genderSection">
         <container class="genderContainer">
           <div class="genders">
-            <img class="man" src="img/man.png" />
-            <img class="woman"src="img/woman.png" />
+
+            <div class="man">
+              <div class="genderText">Man: <span class="malespan">ErrorA1</span></div>
+              <img src="img/man.png" />
+            </div>
+
+            <div class="woman">
+              <div class="genderText">Vrouw:<span class="womanspan">ErrorA1</span></div>
+              <img src="img/woman.png" />
+            </div>
           </div>
         </container>
       </section>
@@ -61,22 +69,23 @@
 
                 });
                 var totaal = MaleCount+FemaleCount;
-                var ManProcent = MaleCount/totaal*100;
-                var FemaleProcent = FemaleCount/totaal*100;
+                var ManProcent = Math.ceil(MaleCount/totaal*100);
+                var FemaleProcent = Math.ceil(FemaleCount/totaal*100);
                 var Malemargin = 100 - ManProcent;
                 var Femalemargin = 100 - FemaleProcent;
-
+                $('.malespan').html(ManProcent + '%');
+                $('.womanspan').html(FemaleProcent + '%');
                 console.log(ManProcent, FemaleProcent, totaal)
                 $( window ).scroll(function() {
                if($(window).scrollTop() < 200 || $(window).scrollTop() > 700){
-                   $('.man').css({'height': '50%'});
-
-                   $('.woman').css({'height': '50%'});
-
+                   $('.man img').css({'width': '50%'});
+                   $('.woman img').css({'width': '50%'});
+                  $('.genderText').css({'color': '#fff'});
                }else{
-                  $('.man').css({'height': ManProcent + '%'});
+                  $('.man img').css({'width': ManProcent + '%'});
 
-                  $('.woman').css({'height': FemaleProcent + '%'});
+                  setTimeout(function(){ $('.genderText').css({'color': '#000'})}, 1000);
+                  $('.woman img').css({'width': FemaleProcent + '%'});
 
                }
               })

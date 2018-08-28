@@ -5,23 +5,42 @@ main{
   display: flex;
   justify-content: center;
 }
-.genders{
+.genderSection{
   height: 500px;
   position: fixed;
-  top: 46%;
-  left: 43%;
-  width: 600px;
+  top: 26%;
+  left: 30%;
+  width: 50%;
 }
-.man{
-  height: 50%;
-  transition: 1s;
+.genders{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 .woman{
-  height: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.man{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.man img{
+  width: 50%;
   transition: 1s;
+
 }
 .genderText{
-  height: 50px;
+  height: 30px;
+  transition: 1s;
+  color: #fff;
+}
+.woman img{
+  width: 50%;
+  transition: 1s;
+
 }
 .Intro{
   height: 50px;
