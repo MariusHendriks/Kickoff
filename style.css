@@ -1,0 +1,27 @@
+*{
+  height: 1920px;
+  margin:0 auto;
+}
+.main{
+  display: flex;
+  justify-content: center;
+}
+.genders{
+  height: 500px;
+  position: fixed;
+}
+.man{
+  height: 50%;
+  margin-right: 100px;
+  transition: 1s;
+}
+.woman{
+  height: 50%;
+  transition: 1s;
+}
+.genderText{
+  height: 50px;
+}
+.Intro{
+  height: 50px;
+}
