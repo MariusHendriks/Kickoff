@@ -1,16 +1,41 @@
+*{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+h1{
+  font-size: 70px;
+}
 body{
-  height: 2000px;
+  height: 7000px;
 }
 main{
   display: flex;
   justify-content: center;
 }
-.genderSection{
-  height: 500px;
+span{
+  font-size: 25px;
+}
+.titleSection{
   position: fixed;
-  top: 26%;
-  left: 30%;
+}
+.titleContainer{
+  display: flex;
+  flex-direction: column;
+}
+.genderSection{
+    top:10%;
+    position: fixed;
+    display: none;
+}
+.genderSection h2{
+  margin-bottom: 100px;
+}
+.genderContainer{
+  height: 500px;
   width: 50%;
+}
+.ageSection{
+  display: none;
 }
 .genders{
   display: flex;
@@ -27,13 +52,19 @@ main{
   align-items: center;
   flex-direction: column;
 }
+.malespan{
+  font-weight: 900;
+}
+.femalespan{
+  font-weight: 900;
+}
 .man img{
   width: 50%;
   transition: 1s;
 
 }
 .genderText{
-  height: 30px;
+  height: 55px;
   transition: 1s;
   color: #fff;
 }

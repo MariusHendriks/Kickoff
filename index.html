@@ -5,24 +5,33 @@
     <title></title>
     <script src="jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   </head>
   <body>
     <main>
+      <section class="titleSection">
+        <container class="titleContainer">
+          <h1>De Titanic</h1>
+          <h5>Scroll om te beginnen</h5>
+        </container>
+      </section>
       <section class="genderSection">
+        <h2>Verhouding tussen mannen en vrouwen op de boot</h2>
         <container class="genderContainer">
           <div class="genders">
-
             <div class="man">
               <div class="genderText">Man: <span class="malespan">ErrorA1</span></div>
               <img src="img/man.png" />
             </div>
-
             <div class="woman">
-              <div class="genderText">Vrouw:<span class="womanspan">ErrorA1</span></div>
+              <div class="genderText">Vrouw: <span class="womanspan">ErrorA1</span></div>
               <img src="img/woman.png" />
             </div>
           </div>
         </container>
+      </section>
+      <section class="ageSection">
+        Ages
       </section>
     </main>
   </body>
@@ -30,6 +39,7 @@
   <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+          $(this).scrollTop(0);
           var MaleCount = 0;
           var FemaleCount = 0;
           var ManProcent = 0;
@@ -75,21 +85,29 @@
                 var Femalemargin = 100 - FemaleProcent;
                 $('.malespan').html(ManProcent + '%');
                 $('.womanspan').html(FemaleProcent + '%');
-                console.log(ManProcent, FemaleProcent, totaal)
+
+
                 $( window ).scroll(function() {
-               if($(window).scrollTop() < 200 || $(window).scrollTop() > 700){
-                   $('.man img').css({'width': '50%'});
-                   $('.woman img').css({'width': '50%'});
-                  $('.genderText').css({'color': '#fff'});
-               }else{
-                  $('.man img').css({'width': ManProcent + '%'});
+                 if($(window).scrollTop() > 400 &&  $(window).scrollTop() < 1000){
+                   $('.titleSection').fadeOut();
+                   $('.genderSection').fadeIn();
+                 }else if ($(window).scrollTop() > 600  &&  $(window).scrollTop() < 2500) {
+                   $('.genderSection').fadeIn();
+                   $('.man img').css({'width': ManProcent + '%'});
+                   $('.genderText').css({'color': '#000'});
+                   $('.woman img').css({'width': FemaleProcent + '%'});
+                   $('.titleSection').fadeOut();
+                 }else if ($(window).scrollTop() > 2100 ) {
+                   $('.genderSection').fadeOut();
+                   $('.ageSection').fadeIn();
+                 }else{
+                   $('.ageSection').fadeOut();
+                   $('.genderSection').fadeOut();
+                   $('.titleSection').fadeIn();
+                 }
+               })
 
-                  setTimeout(function(){ $('.genderText').css({'color': '#000'})}, 1000);
-                  $('.woman img').css({'width': FemaleProcent + '%'});
-
-               }
-              })
             }
-            });
+        });
     </script>
 </html>
