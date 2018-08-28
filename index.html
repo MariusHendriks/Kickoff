@@ -1,14 +1,27 @@
-<head>
-<script src="jquery.min.js"></script>
-<link rel="stylesheet" href="style.css">
-</head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <section class="genderSection">
+        <container class="genderContainer">
+          <div class="genders">
+            <img class="man" src="img/man.png" />
+            <img class="woman"src="img/woman.png" />
+          </div>
+        </container>
+      </section>
+    </main>
+  </body>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script type="text/javascript">
-        // wait until the entire document is loaded
         $(document).ready(function () {
-
-
           var MaleCount = 0;
           var FemaleCount = 0;
           var ManProcent = 0;
@@ -16,14 +29,12 @@
           var totaal = 0;
           var Malemargin = 0;
           var Femalemargin = 0;
-            // use an AJAX call to load the static JSON data from the server
             $.ajax({
                         url: "json.json",
                         dataType: "json",
                         success: appendData // calls a function to handle the JSON data
                     }
             );
-
             /**
              * Appends new mobile OS data to the document.
              *
@@ -40,7 +51,6 @@
                   else if (passagers["Sex"] == "female") {
                     FemaleCount++;
                   }
-
 
                     /* deze code is om alle personen van het schip te laten zien*/
                     // $('#content').append('<h2>' + passagers.Name + '</h2>')
@@ -60,34 +70,17 @@
                 $( window ).scroll(function() {
                if($(window).scrollTop() < 200 || $(window).scrollTop() > 700){
                    $('.man').css({'height': '50%'});
-                   $('.man').css({'margin-right': '100'});
+
                    $('.woman').css({'height': '50%'});
+
                }else{
                   $('.man').css({'height': ManProcent + '%'});
-                  $('.man').css({'margin-right': Malemargin});
+
                   $('.woman').css({'height': FemaleProcent + '%'});
+
                }
-            })
-        }
-
-
-  });
+              })
+            }
+            });
     </script>
-    <body>
-      <main>
-      <div class="Intro">
-        <span class="title">De titanic!</span>interresante feitjes op 1 plek
-      </div>
-      <div class="genderText">
-        Verdeling tussen man en vrouw op de titanic
-      </div>
-    <div class="genders">
-      <img class="man" src="img/man.png" />
-      <img class="woman"src="img/woman.png" />
-    </div>
-    <div id="content">
-      <div class="scrolltop"></div>
-    </div>
-  </main>
-    </body>
-    </html>
+</html>
