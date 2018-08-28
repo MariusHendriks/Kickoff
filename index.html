@@ -31,7 +31,29 @@
         </container>
       </section>
       <section class="ageSection">
-        Ages
+        <h2>Wat was de gemiddelde leeftijd op de boot?</h2>
+        <svg width='100%' height='65px' viewBox='0 0 1132 65'>
+          <g class='bars'>
+            <rect class='bg' fill='#ccc' width='100%' height='25'></rect>
+            <rect class='data fillAge' fill='#0074d9' height='25'></rect>
+          </g>
+          <g class='markers'>
+            <rect fill='#001f3f' x='0%' y='0' width='2px' height='35'></rect>
+            <rect fill='#001f3f' x='25%' y='0' width='2px' height='35'></rect>
+            <rect fill='#001f3f' x='50%' y='0' width='2px' height='35'></rect>
+            <rect fill='#001f3f' x='75%' y='0' width='2px' height='35'></rect>
+            <rect text-anchor='' fill='#001f3f' x='1130' y='0' width='2px' height='35'></rect>
+          </g>
+          <g text-anchor='middle'>
+            <text text-anchor='start' fill='#0074d9' x='0' y='60'>0</text>
+            <text fill='#0074d9' x='25%' y='60'>25</text>
+            <text fill='#0074d9' x='50%' y='60'>50</text>
+            <text fill='#0074d9' x='75%' y='60'>75</text>
+            <text text-anchor='end' fill='#0074d9' x='100%' y='60'>100</text>
+          </g>
+        </svg>
+
+
       </section>
     </main>
   </body>
@@ -47,6 +69,8 @@
           var totaal = 0;
           var Malemargin = 0;
           var Femalemargin = 0;
+          var Totalage = 0;
+          var Avarageage = 0;
             $.ajax({
                         url: "json.json",
                         dataType: "json",
@@ -63,51 +87,66 @@
 
                 // in the property 'os' there is the actual array with the usage data per operating system (OS)
                 data.passagers.forEach(function (passagers) {
+                  if (passagers["Age"] == "") {
+                    passagers["Age"] = 0;
+                  }
                   if (passagers["Sex"] == "male"){
                     MaleCount++;
+                    Totalage += passagers["Age"];
                   }
                   else if (passagers["Sex"] == "female") {
                     FemaleCount++;
+                    Totalage += passagers["Age"];
                   }
 
-                    /* deze code is om alle personen van het schip te laten zien*/
-                    // $('#content').append('<h2>' + passagers.Name + '</h2>')
-                    //         .append('<h3>Leeftijd</h3><div class="bar">' + passagers["Age"] + '</div>')
-                    //         .append('<h3>Geslacht</h3><div class="bar">' + passagers["Sex"] + '</div>')
-                    //         .append('<h3>Locatie</h3><div class="bar">' + passagers["Embarked"] + '</div>');
-
-
                 });
-                var totaal = MaleCount+FemaleCount;
-                var ManProcent = Math.ceil(MaleCount/totaal*100);
-                var FemaleProcent = Math.ceil(FemaleCount/totaal*100);
-                var Malemargin = 100 - ManProcent;
-                var Femalemargin = 100 - FemaleProcent;
+                 totaal = MaleCount+FemaleCount;
+                 ManProcent = Math.ceil(MaleCount/totaal*100);
+                 FemaleProcent = Math.ceil(FemaleCount/totaal*100);
+                 Malemargin = 100 - ManProcent;
+                 Femalemargin = 100 - FemaleProcent;
+                 Avarageage = Totalage / totaal;
+
+                 console.log(Avarageage);
                 $('.malespan').html(ManProcent + '%');
                 $('.womanspan').html(FemaleProcent + '%');
 
+                function ResetStyle() {
+                  $('.man img').css({'width': '50%'});
+                  $('.woman img').css({'width': '50%'});
+                  $('.genderText').css({'color': '#fff'});
+                  $('.fillAge').css({'width': '0'});
+                }
 
                 $( window ).scroll(function() {
+                  //gender 1
                  if($(window).scrollTop() > 400 &&  $(window).scrollTop() < 1000){
                    $('.titleSection').fadeOut();
+                   $('.ageSection').fadeOut();
                    $('.genderSection').fadeIn();
+                   //Gender 2
                  }else if ($(window).scrollTop() > 600  &&  $(window).scrollTop() < 2500) {
+                   $('.ageSection').fadeOut();
                    $('.genderSection').fadeIn();
                    $('.man img').css({'width': ManProcent + '%'});
                    $('.genderText').css({'color': '#000'});
                    $('.woman img').css({'width': FemaleProcent + '%'});
                    $('.titleSection').fadeOut();
+
+                   //Age
                  }else if ($(window).scrollTop() > 2100 ) {
+                   setInterval(function(){ $(".fillAge").css({'width': Avarageage+"%"}); }, 500);
                    $('.genderSection').fadeOut();
                    $('.ageSection').fadeIn();
                  }else{
+                   ResetStyle();
                    $('.ageSection').fadeOut();
                    $('.genderSection').fadeOut();
                    $('.titleSection').fadeIn();
                  }
                })
-
             }
         });
+
     </script>
 </html>

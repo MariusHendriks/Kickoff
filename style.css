@@ -34,8 +34,18 @@ span{
   height: 500px;
   width: 50%;
 }
+.ageSection h2{
+  margin-bottom: 100px;
+}
 .ageSection{
+  position: fixed;
+  top:10%;
+  width: 100%;
   display: none;
+}
+.fillAge{
+  width: 0;
+  transition: 1s;
 }
 .genders{
   display: flex;
