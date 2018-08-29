@@ -6,7 +6,7 @@ h1{
   font-size: 70px;
 }
 body{
-  height: 7000px;
+  height: 4500px;
 }
 main{
   display: flex;
@@ -117,4 +117,38 @@ span{
   padding: 20px;
   font-size: 30px;
   text-align: center;
+}
+.destinationSection{
+  position: fixed;
+  top:10%;
+  width: 80%;
+  display: none;
+}
+.destinationContainer{
+  display: flex;
+}
+.chart1{
+  height: 100px;
+  transition: 1s;
+}
+.chart2{
+  height: 100px;
+  transition: 1s;
+}
+.chart3{
+  height: 10  0px;
+  transition: 1s;
+}
+.chart{
+  width: 15%;
+  background-color: lightblue;
+  margin: 0 50px;
+  padding-top: 20px;
+  font-weight: 900;
+}
+.location{
+  width: 20%;
+}
+.location img{
+  width: 100%;
 }

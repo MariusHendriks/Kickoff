@@ -66,6 +66,21 @@
         </div>
 
       </section>
+      <section class="destinationSection">
+        <h2>Waar stapte de mensen op.</h2>
+        <container class="destinationContainer">
+          <div class="location">
+            <img src="img/location.png" />
+          </div>
+          <div class="chart1 chart">
+
+          </div>
+          <div class="chart2 chart">
+          </div>
+          <div class="chart3 chart">
+          </div>
+        </container>
+      </section>
     </main>
   </body>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -82,6 +97,13 @@
           var Femalemargin = 0;
           var Totalage = 0;
           var Avarageage = 0;
+          var opstappuntS = 0;
+          var opstappuntSpro =0;
+          var opstappuntC = 0;
+          var opstappuntCpro =0;
+          var opstappuntQ = 0;
+          var opstappuntQpro =0;
+          var alleopstartpunten = 0;
             $.ajax({
                         url: "json.json",
                         dataType: "json",
@@ -109,6 +131,15 @@
                     FemaleCount++;
                     Totalage += passagers["Age"];
                   }
+                  if (passagers["Embarked"] == "S") {
+                    opstappuntS ++;
+                  }
+                  else if(passagers["Embarked"] == "Q") {
+                    opstappuntQ ++;
+                  }
+                  else if(passagers["Embarked"] == "C") {
+                    opstappuntC ++;
+                  }
 
                 });
                  totaal = MaleCount+FemaleCount;
@@ -118,15 +149,28 @@
                  Femalemargin = 100 - FemaleProcent;
                  Avarageage = Totalage / totaal;
 
+
+                 alleopstartpunten =  (opstappuntC + opstappuntQ + opstappuntS);
+                 console.log(alleopstartpunten);
+                 opstappuntQpro = Math.ceil(opstappuntQ/alleopstartpunten*100);
+                 opstappuntSpro = Math.ceil(opstappuntS/alleopstartpunten*100);
+                 opstappuntCpro = Math.ceil(opstappuntC/alleopstartpunten*100);
+                 console.log(opstappuntC, opstappuntQ, opstappuntS);
+                 console.log(opstappuntCpro, opstappuntQpro, opstappuntSpro);
                  console.log(Avarageage);
+
+
                 $('.malespan').html(ManProcent + '%');
                 $('.womanspan').html(FemaleProcent + '%');
-
+                $('.chart1').html('Cherbourg ' + opstappuntCpro + '%');
+                $('.chart2').html('Queenstown ' + opstappuntQpro + '%');
+                $('.chart3').html('Southampton ' + opstappuntSpro + '%');
                 function ResetStyle() {
                   $('.man img').css({'width': '50%'});
                   $('.woman img').css({'width': '50%'});
                   $('.genderText').css({'color': '#fff'});
                   $('.fillAge').css({'width': '0'});
+                  $('.chart').css({'height': '0'});
                 }
 
                 $( window ).scroll(function() {
@@ -134,28 +178,37 @@
                  if($(window).scrollTop() > 400 &&  $(window).scrollTop() < 1000){
                    $('.titleSection').fadeOut();
                    $('.ageSection').fadeOut();
-
                    $('.genderSection').fadeIn();
                    //Gender 2
                  }else if ($(window).scrollTop() > 600  &&  $(window).scrollTop() < 2500) {
-
                    $('.ageSection').fadeOut();
                    $('.genderSection').fadeIn();
                    $('.man img').css({'width': ManProcent + '%'});
                    $('.genderText').css({'color': '#000'});
                    $('.woman img').css({'width': FemaleProcent + '%'});
-                  $('.fillAge').css({'width': '0' + '%'});
-                   $('.titleSection').fadeOut();
+                   $('.fillAge').css({'width': '0' + '%'});
+                   $('.titleSection').hide();
                    //Age
-                 }else if ($(window).scrollTop() > 2100 ) {
+                 }else if ($(window).scrollTop() > 2100 &&  $(window).scrollTop() < 3600) {
                    setInterval(function(){ $(".fillAge").css({'width': Avarageage+"%"}); }, 500);
                    $('.genderSection').fadeOut();
                    $('.titleSection').hide();
+                   $('.destinationSection').fadeOut();
                    $('.ageSection').fadeIn();
+                   $('.chart').css({'height': '0'});
+                 }else if ($(window).scrollTop() > 3600 &&  $(window).scrollTop() < 7000)  {
+                   $('.destinationSection').fadeIn();
+                   $('.ageSection').fadeOut();
+                   $('.titleSection').hide();
+                   $('.chart1').css({'height': opstappuntCpro + 'vh'});
+                   $('.chart2').css({'height': opstappuntQpro + 'vh'});
+                   $('.chart3').css({'height': opstappuntSpro + 'vh'});
+
                  }else{
                    ResetStyle();
-                   $('.ageSection').hide();
                    $('.genderSection').hide();
+                   $('.ageSection').hide();
+                   $('.destinationSection').hide();
                    $('.titleSection').fadeIn();
                  }
                })
