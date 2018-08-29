@@ -28,14 +28,37 @@ span{
     display: none;
 }
 .genderSection h2{
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .genderContainer{
   height: 500px;
   width: 50%;
 }
+.ageContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.old{
+  Width:15%;
+}
+.old img{
+  width: 100%;
+}
+.avarageAgeBox{
+  Width:70%;
+}
+.young{
+  Width:15%;
+}
+.ageChild{
+  margin-top: 80px;
+}
+.young img{
+  width: 100%;
+}
 .ageSection h2{
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 .ageSection{
   position: fixed;
@@ -44,7 +67,7 @@ span{
   display: none;
 }
 .fillAge{
-  width: 0;
+  width: 0%;
   transition: 1s;
 }
 .genders{
