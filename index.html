@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Ff in mijn code spieken? Ouwe snoepert. -->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -80,7 +81,9 @@
           <div class="chart3 chart">
           </div>
         </container>
+        Feedback is welkom, open wordbestand. (alt tab)
       </section>
+
     </main>
   </body>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -151,13 +154,10 @@
 
 
                  alleopstartpunten =  (opstappuntC + opstappuntQ + opstappuntS);
-                 console.log(alleopstartpunten);
                  opstappuntQpro = Math.ceil(opstappuntQ/alleopstartpunten*100);
                  opstappuntSpro = Math.ceil(opstappuntS/alleopstartpunten*100);
                  opstappuntCpro = Math.ceil(opstappuntC/alleopstartpunten*100);
-                 console.log(opstappuntC, opstappuntQ, opstappuntS);
-                 console.log(opstappuntCpro, opstappuntQpro, opstappuntSpro);
-                 console.log(Avarageage);
+
 
 
                 $('.malespan').html(ManProcent + '%');
@@ -178,6 +178,7 @@
                  if($(window).scrollTop() > 400 &&  $(window).scrollTop() < 1000){
                    $('.titleSection').fadeOut();
                    $('.ageSection').fadeOut();
+                   $('.fillAge').css({'width': '0'});
                    $('.genderSection').fadeIn();
                    //Gender 2
                  }else if ($(window).scrollTop() > 600  &&  $(window).scrollTop() < 2500) {
@@ -186,7 +187,7 @@
                    $('.man img').css({'width': ManProcent + '%'});
                    $('.genderText').css({'color': '#000'});
                    $('.woman img').css({'width': FemaleProcent + '%'});
-                   $('.fillAge').css({'width': '0' + '%'});
+                   $('.fillAge').css({'width': '0'});
                    $('.titleSection').hide();
                    //Age
                  }else if ($(window).scrollTop() > 2100 &&  $(window).scrollTop() < 3600) {
@@ -203,7 +204,7 @@
                    $('.chart1').css({'height': opstappuntCpro + 'vh'});
                    $('.chart2').css({'height': opstappuntQpro + 'vh'});
                    $('.chart3').css({'height': opstappuntSpro + 'vh'});
-
+                    $('.fillAge').css({'width': '0'});
                  }else{
                    ResetStyle();
                    $('.genderSection').hide();
